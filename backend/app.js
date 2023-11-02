@@ -14,7 +14,7 @@ const { errorHandler } = require('./middlewares/errorHandler');
 const { linkRegex } = require('./constants/regex');
 const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { cors } = require('./middlewares/cors');
+const cors = require('./middlewares/cors');
 
 const { PORT = 3000 } = process.env;
 
