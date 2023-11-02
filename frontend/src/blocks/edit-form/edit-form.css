@@ -1,0 +1,14 @@
+.edit-form {
+  width: 430px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-auto-flow: row;
+  justify-items: center;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 660px) {
+  .edit-form {
+    width: 282px;
+  }
+}

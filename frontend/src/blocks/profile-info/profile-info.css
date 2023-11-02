@@ -1,0 +1,22 @@
+.profile-info {
+  display: grid;
+  grid-template-columns: min-content 18px min-content;
+  grid-template-rows: min-content 9px min-content;
+  grid-template-areas:
+    "name . edit-button"
+    ". . ."
+    "occupation . .";
+  margin-left: 30px;
+  grid-area: profile-info;
+  max-width: 500px;
+}
+
+@media screen and (max-width: 880px) {
+  .profile-info {
+    grid-template-columns: min-content 10px min-content;
+    grid-template-rows: max-content 6px max-content;
+    justify-items: center;
+    margin-left: calc(10px + 18px);
+    max-width: 100%;
+  }
+}

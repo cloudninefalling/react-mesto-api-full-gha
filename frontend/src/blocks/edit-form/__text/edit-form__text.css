@@ -1,0 +1,22 @@
+.edit-form__text {
+  width: 358px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: 27px;
+  padding: 0;
+}
+
+.edit-form__text:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 660px) {
+  .edit-form__text {
+    width: 238px;
+  }
+}

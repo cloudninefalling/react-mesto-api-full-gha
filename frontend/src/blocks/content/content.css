@@ -1,0 +1,14 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  max-width: 880px;
+  width: 100%;
+  align-items: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .content {
+    max-width: 88%;
+  }
+}

@@ -1,0 +1,16 @@
+.edit-form__input-error-msg {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #f00;
+  justify-self: start;
+  margin: 5px 36px 0;
+  min-height: 30px;
+}
+
+@media screen and (max-width: 660px) {
+  .edit-form__input-error-msg {
+    margin: 5px 22px 0;
+  }
+}

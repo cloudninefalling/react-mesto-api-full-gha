@@ -1,0 +1,31 @@
+.profile__avatar {
+  width: 120px;
+  aspect-ratio: 1/1;
+  grid-area: avatar;
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  padding: 0;
+}
+
+.profile__avatar::before {
+  background-image: url(../../../images/avatar__edit.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile__avatar:hover::before {
+  opacity: 1;
+  cursor: pointer;
+}

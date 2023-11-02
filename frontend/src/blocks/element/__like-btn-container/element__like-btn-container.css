@@ -1,0 +1,7 @@
+.element__like-btn-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0 20px;
+  grid-area: like;
+}

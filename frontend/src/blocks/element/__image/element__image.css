@@ -1,0 +1,9 @@
+.element__image {
+  overflow: hidden;
+  width: 100%;
+  grid-area: image;
+  background-position: center;
+  background-size: cover;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+}
