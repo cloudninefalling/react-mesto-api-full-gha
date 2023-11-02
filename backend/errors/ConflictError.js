@@ -1,4 +1,4 @@
-const { StatusCodes } = require('./StatusCodes');
+const StatusCodes = require('./StatusCodes');
 
 class NotUniqueError extends Error {
   constructor(message) {
