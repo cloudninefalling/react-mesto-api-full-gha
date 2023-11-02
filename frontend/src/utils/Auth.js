@@ -22,6 +22,7 @@ class Auth {
   login(email, password) {
     return fetch(`${this.BASE_URL}/signin`, {
       method: "POST",
+      credentials: "include",
       headers: this.headers,
       body: JSON.stringify({ email, password }),
     });
@@ -30,6 +31,7 @@ class Auth {
   validateToken(token) {
     return fetch(`${this.BASE_URL}/users/me`, {
       method: "GET",
+      credentials: "include",
       headers: {
         ...this.headers,
         Authorization: `Bearer ${token}`,
