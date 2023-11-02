@@ -24,16 +24,7 @@ class Auth {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify({ email, password }),
-    })
-      .then(this._getResponseData)
-      .then((json) => {
-        if (json) {
-          if (json.token) {
-            localStorage.setItem("jwt", json.token);
-            return json;
-          }
-        } else return "Error: no json";
-      });
+    });
   }
 
   validateToken(token) {

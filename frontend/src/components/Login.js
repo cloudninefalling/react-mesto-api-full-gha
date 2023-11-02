@@ -16,7 +16,7 @@ export default function Login({ openTooltip, handleLogin }) {
     auth
       .login(email, password)
       .then((res) => {
-        if (res.token) {
+        if (res.status === 200) {
           handleLogin(email);
         } else showErrorTooltip();
       })
