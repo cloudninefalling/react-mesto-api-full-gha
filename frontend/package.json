@@ -18,7 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "scp -r ./build/* cloudninefalling@158.160.15.128:/home/cloudninefalling/mesto-frontend"
   },
   "eslintConfig": {
     "extends": [

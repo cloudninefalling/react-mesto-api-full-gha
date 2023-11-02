@@ -85,9 +85,11 @@ class Api {
   }
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default new Api({
   baseUrl: "https://api.mesto.social.nomoredomainsrocks.ru",
   headers: {
     "Content-Type": "application/json",
+    credentials: "include",
   },
 });
