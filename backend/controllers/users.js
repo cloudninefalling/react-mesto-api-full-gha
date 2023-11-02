@@ -17,7 +17,7 @@ module.exports.getUsers = (req, res, next) => {
 
 // prettier-ignore
 module.exports.getCurrentUser = (req, res) => {
-  req.params.id = req.user;
+  req.params.id = req.user._id;
   module.exports.getUserById(req, res);
 };
 
@@ -67,7 +67,7 @@ module.exports.createUser = (req, res, next) => {
 // prettier-ignore
 module.exports.updateUser = (req, res, next) => {
   const { name, about } = req.body;
-  User.findByIdAndUpdate(req.user, { name, about }, {
+  User.findByIdAndUpdate(req.user._id, { name, about }, {
     new: true,
     runValidators: true,
     upsert: false,
@@ -90,7 +90,7 @@ module.exports.updateUser = (req, res, next) => {
 module.exports.updateUserAvatar = (req, res, next) => {
   const { avatar } = req.body;
   User.findByIdAndUpdate(
-    req.user,
+    req.user._id,
     { avatar },
     {
       new: true,
@@ -124,8 +124,8 @@ module.exports.login = (req, res, next) => {
       );
       res.cookie('jwt', token, {
         httpOnly: true,
-        maxAge: 360000,
-      }).end();
+        maxAge: 36000000,
+      }).send(user);
     })
     .catch(next);
 };
