@@ -14,6 +14,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
+      credentials: "include",
     }).then(this._getResponseData);
   }
 
@@ -28,6 +29,7 @@ class Api {
   _putLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
+      credentials: "include",
       headers: this._headers,
     }).then(this._getResponseData);
   }
@@ -35,6 +37,7 @@ class Api {
   _deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
+      credentials: "include",
       headers: this._headers,
     }).then(this._getResponseData);
   }
@@ -42,6 +45,7 @@ class Api {
   deleteImage(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
+      credentials: "include",
       headers: this._headers,
     }).then(this._getResponseData);
   }
@@ -49,6 +53,7 @@ class Api {
   uploadImage(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -60,12 +65,14 @@ class Api {
   getProfileInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
+      credentials: "include",
     }).then(this._getResponseData);
   }
 
   setProfileInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         name,
@@ -77,6 +84,7 @@ class Api {
   setAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         avatar: avatar,
@@ -90,6 +98,5 @@ export default new Api({
   baseUrl: "https://api.mesto.social.nomoredomainsrocks.ru",
   headers: {
     "Content-Type": "application/json",
-    credentials: "include",
   },
 });
