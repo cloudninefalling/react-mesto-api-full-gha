@@ -38,15 +38,12 @@ function App() {
 
   React.useEffect(() => {
     //check token
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      auth
-        .validateToken(jwt)
-        .then((res) => {
-          handleLogin(res.data.email);
-        })
-        .catch(console.log);
-    }
+    auth
+      .validateToken()
+      .then((res) => {
+        handleLogin(res.email);
+      })
+      .catch(console.log);
   }, []);
 
   React.useEffect(() => {
@@ -54,8 +51,9 @@ function App() {
       //set initial profile, cards
       Promise.all([api.getProfileInfo(), api.getInitialCards()])
         .then((res) => {
+          console.log(res);
           const profileInfo = res[0];
-          const cards = res[1];
+          const cards = res[1].cards;
           setCurrentUser(profileInfo);
           setCards(cards);
         })

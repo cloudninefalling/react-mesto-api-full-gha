@@ -28,13 +28,12 @@ class Auth {
     });
   }
 
-  validateToken(token) {
+  validateToken() {
     return fetch(`${this.BASE_URL}/users/me`, {
       method: "GET",
       credentials: "include",
       headers: {
         ...this.headers,
-        Authorization: `Bearer ${token}`,
       },
     }).then(this._getResponseData);
   }
