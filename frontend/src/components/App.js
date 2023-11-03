@@ -137,9 +137,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(
-      (likedUser) => likedUser._id === currentUser._id
-    );
+    const isLiked = card.likes.some((likeId) => likeId === currentUser._id);
 
     api
       .toggleLike(card._id, isLiked)
@@ -191,7 +189,7 @@ function App() {
     api
       .uploadImage({ name, link })
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([newCard.data, ...cards]);
       })
       .then(closeAllPopups)
       .catch(console.log);

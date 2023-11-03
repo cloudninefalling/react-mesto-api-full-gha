@@ -6,7 +6,6 @@ const ForbiddenError = require('../errors/ForbiddenError');
 // prettier-ignore
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
-  console.log(req.user);
   Card.create({ name, link, owner: req.user._id })
     .then((card) => {
       Card.findById(card._id).populate('owner').then((cardWithOwner) => {
@@ -22,14 +21,14 @@ module.exports.createCard = (req, res, next) => {
 
 // prettier-ignore
 module.exports.getCards = (req, res, next) => {
-  Card.find({}).populate('owner')
-    .then((cards) => res.send({ cards }))
+  Card.find({}).populate(['owner', 'likes'])
+    .then((cards) => res.send(cards))
     .catch(next);
 };
 
 // prettier-ignore
 module.exports.deleteCardById = (req, res, next) => {
-  Card.findById(req.params.cardId)
+  Card.findById(req.params.cardId).populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         throw new NotFoundError('Card not found');
@@ -54,11 +53,12 @@ module.exports.likeCard = (req, res, next) => {
     req.params.cardId,
     { $addToSet: { likes: req.user._id } },
     { new: true },
-  ).populate('likes')
+  ).populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         throw new NotFoundError('Card not found');
       }
+      console.log(card);
       res.send(card);
     })
     .catch((err) => {
@@ -74,7 +74,7 @@ module.exports.dislikeCard = (req, res, next) => {
     req.params.cardId,
     { $pull: { likes: req.user._id } },
     { new: true },
-  ).populate('likes')
+  ).populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         throw new NotFoundError('Card not found');
@@ -83,7 +83,7 @@ module.exports.dislikeCard = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new NotFoundError('Card not found'));
+        next(new NotFoundError('Invalid ID'));
       } else next(err);
     });
 };
