@@ -53,7 +53,7 @@ function App() {
         .then((res) => {
           console.log(res);
           const profileInfo = res[0];
-          const cards = res[1];
+          const cards = res[1].reverse();
           setCurrentUser(profileInfo);
           setCards(cards);
         })
@@ -93,6 +93,7 @@ function App() {
   function handleLogout() {
     auth.logout().then(() => {
       setCurrentEmail("");
+      setCurrentUser({});
       navigate("/sign-in", { replace: true });
       setLoggedIn(false);
     });
