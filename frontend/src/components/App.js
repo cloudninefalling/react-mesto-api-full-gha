@@ -53,7 +53,7 @@ function App() {
         .then((res) => {
           console.log(res);
           const profileInfo = res[0];
-          const cards = res[1].cards;
+          const cards = res[1];
           setCurrentUser(profileInfo);
           setCards(cards);
         })
@@ -91,10 +91,11 @@ function App() {
   }
 
   function handleLogout() {
-    localStorage.removeItem("jwt");
-    setCurrentEmail("");
-    navigate("/sign-in", { replace: true });
-    setLoggedIn(false);
+    auth.logout().then(() => {
+      setCurrentEmail("");
+      navigate("/sign-in", { replace: true });
+      setLoggedIn(false);
+    });
   }
 
   //popups open-close funtions
@@ -137,7 +138,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((likeId) => likeId === currentUser._id);
+    const isLiked = card.likes.some((like) => like._id === currentUser._id);
 
     api
       .toggleLike(card._id, isLiked)
@@ -189,7 +190,7 @@ function App() {
     api
       .uploadImage({ name, link })
       .then((newCard) => {
-        setCards([newCard.data, ...cards]);
+        setCards([newCard, ...cards]);
       })
       .then(closeAllPopups)
       .catch(console.log);

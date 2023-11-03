@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 const auth = require('./middlewares/auth');
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, logout } = require('./controllers/users');
 const { errorHandler } = require('./middlewares/errorHandler');
 const { linkRegex } = require('./constants/regex');
 const NotFoundError = require('./errors/NotFoundError');
@@ -73,6 +73,7 @@ app.post(
 
 app.use('/users', auth, usersRouter);
 app.use('/cards', auth, cardsRouter);
+app.use('/signout', auth, logout);
 app.use((req, res, next) => {
   next(new NotFoundError('This route does not exist'));
 });

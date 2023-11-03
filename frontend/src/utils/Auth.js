@@ -28,6 +28,14 @@ class Auth {
     });
   }
 
+  logout() {
+    return fetch(`${this.BASE_URL}/signout`, {
+      method: "POST",
+      credentials: "include",
+      headers: this.headers,
+    });
+  }
+
   validateToken() {
     return fetch(`${this.BASE_URL}/users/me`, {
       method: "GET",
@@ -39,6 +47,7 @@ class Auth {
   }
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default new Auth({
   BASE_URL: "https://api.mesto.social.nomoredomainsrocks.ru",
   headers: { "Content-Type": "application/json" },

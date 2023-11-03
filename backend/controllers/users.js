@@ -124,8 +124,20 @@ module.exports.login = (req, res, next) => {
       );
       res.cookie('jwt', token, {
         httpOnly: true,
+        sameSite: true,
         maxAge: 36000000,
       }).send(user);
     })
     .catch(next);
+};
+
+module.exports.logout = (req, res) => {
+  res
+    .cookie('jwt', 'none', {
+      expires: new Date(Date.now() + 5000),
+      httpOnly: true,
+      sameSite: true,
+    })
+    .res.status(200)
+    .send();
 };
