@@ -191,7 +191,6 @@ function App() {
     api
       .uploadImage({ name, link })
       .then((newCard) => {
-        console.log(newCard);
         setCards([newCard, ...cards]);
       })
       .then(closeAllPopups)

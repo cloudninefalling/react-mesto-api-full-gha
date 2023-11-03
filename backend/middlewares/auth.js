@@ -1,7 +1,6 @@
 /* eslint-disable consistent-return */
 const jwt = require('jsonwebtoken');
 const AuthError = require('../errors/AuthError');
-const user = require('../models/user');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -21,10 +20,6 @@ module.exports = (req, res, next) => {
   } catch (err) {
     next(new AuthError('Authorization required'));
   }
-
-  // eslint-disable-next-line arrow-parens
-  user.findById(payload._id).then(data => {
-    req.user = data;
-    next();
-  });
+  req.user = payload.user;
+  next();
 };
