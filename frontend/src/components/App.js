@@ -51,7 +51,6 @@ function App() {
       //set initial profile, cards
       Promise.all([api.getProfileInfo(), api.getInitialCards()])
         .then((res) => {
-          console.log(res);
           const profileInfo = res[0];
           const cards = res[1].reverse();
           setCurrentUser(profileInfo);
